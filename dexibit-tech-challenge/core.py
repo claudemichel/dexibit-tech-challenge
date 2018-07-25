@@ -12,10 +12,7 @@ exibition_pred_file_path = '../ressources/anon-exhibition_pred-input.csv'
 exibition_predictors=['ExhibitionName', 'Date', 'DaysRun', 'DaysLeft', 'TotalDuration',
        'PercentComplete', 'Year', 'Season', 'Month', 'WeekDay', 'ArtistName',
        'CategoryName', 'LocationName', 'MarketingSpend', 'TicketPrice', 'VenueVisitors', 'ConversionRate']
-# exibition_predictors=['Date',
-#        'Season', 'WeekDay',
-#        'CategoryName', 'LocationName', 'MarketingSpend', 'TicketPrice', 'VenueVisitors']
-exibition_predictors_to_drop = ['Date']
+exibition_predictors_to_drop = ['Date', 'Year', 'Month', 'DaysRun', 'DaysLeft', 'PercentComplete','ArtistName', 'ConversionRate']
 
 #Def load data
 def load_csv(file_path):
