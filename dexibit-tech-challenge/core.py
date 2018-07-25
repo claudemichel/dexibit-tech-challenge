@@ -54,6 +54,6 @@ y = exibition_train_data.ExhibitionVisitors
 #Split data in two groups: validation process data and traininig process data
 train_X, val_X, train_y, val_y = train_test_split(X, y, random_state = 0)
 
-for max_leaf_nodes in [5, 50 ,500 ,5000]:
+for max_leaf_nodes in [2,3,4,5, 6, 7, 8,9, 10, 30,40, 50 ,500]:
     error_rate=get_error_rate(max_leaf_nodes, train_X, val_X, train_y, val_y)
     print("Leaf nodes: %d \t Error rate:%d" % (max_leaf_nodes,error_rate))
