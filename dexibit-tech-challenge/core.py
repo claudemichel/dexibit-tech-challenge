@@ -9,12 +9,12 @@ exibition_train_file_path = '../ressources/anon-exhibition_train-input.csv'
 exibition_pred_file_path = '../ressources/anon-exhibition_pred-input.csv'
 #TODO: Find a more elegant way to get column name except exibition visitors (ex:  kaggle - handle missing value)
 
-# exibition_predictors=['ExhibitionName', 'Date', 'DaysRun', 'DaysLeft', 'TotalDuration',
-#        'PercentComplete', 'Year', 'Season', 'Month', 'WeekDay', 'ArtistName',
-#        'CategoryName', 'LocationName', 'MarketingSpend', 'TicketPrice', 'VenueVisitors', 'ConversionRate']
-exibition_predictors=['Date',
-       'Season', 'WeekDay',
-       'CategoryName', 'LocationName', 'MarketingSpend', 'TicketPrice', 'VenueVisitors']
+exibition_predictors=['ExhibitionName', 'Date', 'DaysRun', 'DaysLeft', 'TotalDuration',
+       'PercentComplete', 'Year', 'Season', 'Month', 'WeekDay', 'ArtistName',
+       'CategoryName', 'LocationName', 'MarketingSpend', 'TicketPrice', 'VenueVisitors', 'ConversionRate']
+# exibition_predictors=['Date',
+#        'Season', 'WeekDay',
+#        'CategoryName', 'LocationName', 'MarketingSpend', 'TicketPrice', 'VenueVisitors']
 exibition_predictors_to_drop = ['Date']
 
 #Def load data
