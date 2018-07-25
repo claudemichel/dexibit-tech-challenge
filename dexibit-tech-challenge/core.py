@@ -1,6 +1,6 @@
 import pandas as pd
+import numpy as np
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_absolute_error
 from sklearn.tree import DecisionTreeRegressor
 import numpy as np
 
@@ -21,11 +21,26 @@ def load_csv(file_path):
     except:
         print("Opps! Invalid file. Please check file location")
 
-def compute_dexibit_error_rate(val_y, val_prediction):
-    return (1- ((val_y.mean() - val_prediction.mean())/val_y.mean())) * 100
+
+def compute_dexibit_error_rate(val_y, val_predictions):
+    val_1, val_2 = np.array(val_y),np.array(val_predictions)
+    return np.mean(abs((val_2-val_1)/val_1))*100
+
+
+def build_train_infer(max_leaf_nodes,train_X, train_y, val_X):
+    exibition_model = DecisionTreeRegressor(max_leaf_nodes=max_leaf_nodes, random_state=0)
+    exibition_model.fit(train_X, train_y)
+    val_predictions = exibition_model.predict(val_X)
+    return val_predictions
+
+
+def get_error_rate(max_leaf_nodes, train_X, val_X, train_y, val_y):
+    val_predictions = build_train_infer(max_leaf_nodes,train_X, train_y, val_X)
+    return compute_dexibit_error_rate(val_y, val_predictions)
 
 
 exibition_train_data = load_csv(exibition_train_file_path)
+
 exibition_pred_data = load_csv(exibition_pred_file_path)
 
 #Define predictors
@@ -38,11 +53,7 @@ y = exibition_train_data.ExhibitionVisitors
 
 #Split data in two groups: validation process data and traininig process data
 train_X, val_X, train_y, val_y = train_test_split(X, y, random_state = 0)
-#print(train_X.dtypes)
 
-exibition_model = DecisionTreeRegressor()
-exibition_model.fit(train_X, train_y)
-val_predictions=exibition_model.predict(val_X)
-#print(mean(exibition_train_data.ExhibitionVisitors)
-print("Result without leaves: \t\t")
-print(compute_dexibit_error_rate(val_y, val_predictions))
+for max_leaf_nodes in [5, 50 ,500 ,5000]:
+    error_rate=get_error_rate(max_leaf_nodes, train_X, val_X, train_y, val_y)
+    print("Leaf nodes: %d \t Error rate:%d" % (max_leaf_nodes,error_rate))
